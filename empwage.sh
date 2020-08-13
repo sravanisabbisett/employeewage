@@ -6,15 +6,14 @@ is_Full_Time=2
 is_Part_Time=1
 employeeCheck=$(( RANDOM%3 ))
 
-if [ $employeeCheck -eq $is_Full_Time ]
-then
-	empHrs=8
-elif [ $employeeCheck -eq $is_Part_Time ]
-then
-	empHrs=4
-else
-	empHrs=0
-fi
+case $employeeCheck in
+			$is_Full_Time)
+					empHrs=8 ;;
+			$is_Part_Time)
+					empHrs=4 ;;
+							*)
+					empHrs=0 ;;
+esac
 
 salary=$(( $dailyWagePerHour*$empHrs ))
 echo "salary is" $salary
